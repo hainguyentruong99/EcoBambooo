@@ -34,17 +34,11 @@ const productSchema = new mongoose.Schema(
 		rating: {
 			type: Number,
 			required: true,
-			default: 5,
+			default: 0,
 		},
 		numberOfReviews: {
 			type: Number,
-			default: 0,
-		},
-		subtitle: {
-			type: String,
-		},
-		description: {
-			type: String,
+			required: true,
 		},
 		price: {
 			type: Number,
@@ -60,7 +54,6 @@ const productSchema = new mongoose.Schema(
 		},
 		stripeId: {
 			type: String,
-			default: 0,
 		},
 	},
 	{ timestamps: true }
