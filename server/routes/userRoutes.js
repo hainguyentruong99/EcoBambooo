@@ -4,6 +4,7 @@ import asyncHandler from 'express-async-handler';
 import jwt from 'jsonwebtoken';
 import { sendVerificationEmail } from '../middleware/sendVerificationEmail.js';
 import { sendPasswordResetEmail } from '../middleware/sendPasswordResetEmail.js';
+import { protectRoute } from '../middleware/authMiddleware.js';
 
 const userRoutes = express.Router();
 
@@ -33,7 +34,7 @@ const loginUser = asyncHandler(async (req, res) => {
 			created: user.createdAt,
 		});
 	} else {
-		res.status(401).send('Email hoặc mật khẩu không hợp lệ.');
+		res.status(401).send('Invalid Email or Password.');
 		throw new Error('User not found.');
 	}
 });
@@ -44,7 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 	const userExists = await User.findOne({ email });
 	if (userExists) {
-		res.status(400).send('Chúng tôi đã có tài khoản với địa chỉ email đó.');
+		res.status(400).send('We already have an account with that email address.');
 	}
 
 	const user = await User.create({
@@ -71,28 +72,17 @@ const registerUser = asyncHandler(async (req, res) => {
 			createdAt: user.createdAt,
 		});
 	} else {
-		res.status(400).send('Chúng tôi không thể đăng ký cho bạn.');
-		throw new Error('Đã xảy ra lỗi. Vui lòng kiểm tra thông tin của bạn và thử lại.');
+		res.status(400).send('We could not register you.');
+		throw new Error('Something went wrong. Please check your information and try again.');
 	}
 });
 
 // verify email
 const verifyEmail = asyncHandler(async (req, res) => {
-	const token = req.headers.authorization.split(' ')[1];
-	try {
-		const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
-		const user = await User.findById(decoded.id);
-
-		if (user) {
-			user.active = true;
-			await user.save();
-			res.json('Thanks for activating your account. You can close this window now.');
-		} else {
-			res.status(404).send('User not found.');
-		}
-	} catch (error) {
-		res.status(401).send('Email address could not be verified.');
-	}
+	const user = req.user;
+	user.active = true;
+	await user.save();
+	res.json('Thanks for activating your account. You can close this window now.');
 });
 
 // password reset request
@@ -129,10 +119,62 @@ const passwordReset = asyncHandler(async (req, res) => {
 	}
 });
 
+//google login
+const googleLogin = asyncHandler(async (req, res) => {
+	const { googleId, email, name, googleImage } = req.body;
+	console.log(googleId, email, name, googleImage);
+
+	try {
+		const user = await User.findOne({ googleId: googleId });
+		if (user) {
+			user.firstLogin = false;
+			await user.save();
+			res.json({
+				_id: user._id,
+				name: user.name,
+				email: user.email,
+				googleImage: user.googleImage,
+				googleId: user.googleId,
+				firstLogin: user.firstLogin,
+				isAdmin: user.isAdmin,
+				token: genToken(user._id),
+				active: user.active,
+				createdAt: user.createdAt,
+			});
+		} else {
+			const newUser = await User.create({
+				name,
+				email,
+				googleImage,
+				googleId,
+			});
+
+			const newToken = genToken(newUser._id);
+
+			sendVerificationEmail(newToken, newUser.email, newUser.name, newUser._id);
+			res.json({
+				_id: newUser._id,
+				name: newUser.name,
+				email: newUser.email,
+				googleImage: newUser.googleImage,
+				googleId: newUser.googleId,
+				firstLogin: newUser.firstLogin,
+				isAdmin: newUser.isAdmin,
+				token: genToken(newUser._id),
+				active: newUser.active,
+				createdAt: newUser.createdAt,
+			});
+		}
+	} catch (error) {
+		res.status(404).send('Something went wrong, please try again later.');
+	}
+});
+
 userRoutes.route('/login').post(loginUser);
 userRoutes.route('/register').post(registerUser);
-userRoutes.route('/verify-email').get(verifyEmail);
+userRoutes.route('/verify-email').get(protectRoute, verifyEmail);
 userRoutes.route('/password-reset-request').post(passwordResetRequest);
 userRoutes.route('/password-reset').post(passwordReset);
+userRoutes.route('/google-login').post(googleLogin);
 
 export default userRoutes;
