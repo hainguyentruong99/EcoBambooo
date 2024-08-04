@@ -21,6 +21,8 @@ const getProducts = async (req, res) => {
 };
 
 
+
+productRoutes.route('/:page/:perPage').get(getProducts);
 productRoutes.route('/').get(getProducts);
 
 export default productRoutes;
