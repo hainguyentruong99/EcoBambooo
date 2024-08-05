@@ -28,18 +28,14 @@ const LandingScreen = () => (
 				<Stack spacing={{ base: '8', lg: '10' }}>
 					<Stack spacing={{ base: '2', lg: '4' }}>
 						<Flex alignItems='center'>
-							<Icon as={BsPhoneFlip} h={12} w={12} color={mode('cyan.500', 'yellow.200')} />
 							<Text fontSize='4xl' fontWeight='bold'>
-								Tech Lines
+								Ecobamboo Wrap
 							</Text>
 						</Flex>
-						<Heading size='xl' fontWeight='normal'>
-							Refresh your equipment
-						</Heading>
 					</Stack>
 					<HStack spacing='3'>
 						<Link as={ReactLink} to='/products' color={mode('cyan.500', 'yellow.200')}>
-							Discover now
+							Khám phá ngay
 						</Link>
 						<Icon color={mode('cyan.500', 'yellow.200')} as={FaArrowRight} />
 					</HStack>
@@ -47,7 +43,7 @@ const LandingScreen = () => (
 			</Box>
 			<Flex flex='1' overflow='hidden'>
 				<Image
-					src={mode('images/landing-light.jpg', 'images/landing-dark.jpg')}
+					src={mode('images/landing.jpg', 'images/landing.jpg')}
 					fallback={<Skeleton />}
 					maxH='550px'
 					minW='300px'

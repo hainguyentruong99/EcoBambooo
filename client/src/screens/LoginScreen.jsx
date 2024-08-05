@@ -88,11 +88,11 @@ const LoginScreen = () => {
 					<Stack spacing='8'>
 						<Stack spacing='6'>
 							<Stack spacing={{ base: '2', md: '3' }} textAlign='center'>
-								<Heading fontSize={{ base: 'md', lg: 'xl' }}>Log in to your account</Heading>
+								<Heading fontSize={{ base: 'md', lg: 'xl' }}>Đăng nhập tài khoản của bạn</Heading>
 								<HStack spacing='1' justify='center'>
-									<Text>Don't have an account?</Text>
+									<Text>Bạn chưa có tài khoản?</Text>
 									<Button as={ReactLink} to='/registration' variant='link' colorScheme='cyan'>
-										Sign up
+										Đăng ký
 									</Button>
 								</HStack>
 							</Stack>
@@ -126,14 +126,14 @@ const LoginScreen = () => {
 											size='sm'
 											colorScheme='cyan'
 											variant='outline'>
-											Forgot Password ?
+											Quên mật khẩu ?
 										</Button>
 										{showPasswordReset && <PasswordForgottenForm />}
 									</FormControl>
 								</Stack>
 								<Stack spacing='6'>
 									<Button colorScheme='cyan' size='lg' fontSize='md' isLoading={loading} type='submit'>
-										Sign in
+										Đăng nhập
 									</Button>
 									<Button
 										leftIcon={<FcGoogle />}
@@ -142,7 +142,7 @@ const LoginScreen = () => {
 										fontSize='md'
 										isLoading={loading}
 										onClick={() => handleGoogleLogin()}>
-										Google sign in
+										Đăng nhập bằng Google
 									</Button>
 								</Stack>
 							</Stack>

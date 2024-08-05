@@ -38,10 +38,10 @@ const CartScreen = () => {
 			) : cartItems.length <= 0 ? (
 				<Alert status='warning'>
 					<AlertIcon />
-					<AlertTitle>Your cart is empty.</AlertTitle>
+					<AlertTitle>Giỏ hàng của bạn rỗng.</AlertTitle>
 					<AlertDescription>
 						<Link as={ReactLink} to='/products'>
-							Click here to see your products.
+							Nhấp vào đây để xem sản phẩm của bạn.
 						</Link>
 					</AlertDescription>
 				</Alert>
@@ -66,9 +66,9 @@ const CartScreen = () => {
 							<OrderSummary />
 
 							<HStack mt='6' fontWeight='semibold'>
-								<p>or</p>
+								<p>hoặc</p>
 								<Link as={ReactLink} to='/products' color={mode('cyan.500', 'cyan.200')}>
-									Continue Shopping
+									Tiếp tục mua sắm
 								</Link>
 							</HStack>
 						</Flex>

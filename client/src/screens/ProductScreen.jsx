@@ -119,11 +119,11 @@ const ProductScreen = () => {
 									</Badge>
 								)}
 								<Heading fontSize='2xl' fontWeight='extrabold'>
-									{product.brand} {product.name}
+									{product.name}
 								</Heading>
 								<Stack spacing='5'>
 									<Box>
-										<Text fontSize='xl'>${product.price}</Text>
+										<Text fontSize='xl'>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}</Text>
 										<Flex>
 											<HStack spacing='2px'>
 												<Star color='cyan.500' />
@@ -133,13 +133,13 @@ const ProductScreen = () => {
 												<Star rating={product.rating} star={5} />
 											</HStack>
 											<Text fontSize='md' fontWeight='bold' ml='4px'>
-												{product.numberOfReviews} Reviews
+												{product.numberOfReviews} Đánh giá sản phẩm
 											</Text>
 										</Flex>
 									</Box>
 									<Text>{product.subtitle}</Text>
 									<Text>{product.description}</Text>
-									<Text fontWeight='bold'>Quantity</Text>
+									<Text fontWeight='bold'>Số lượng</Text>
 									<Flex w='170px' p='5px' border='1px' borderColor='gray.200' alignItems='center'>
 										<Button isDisabled={amount <= 1} onClick={() => changeAmount('minus')}>
 											<MinusIcon />
@@ -150,32 +150,32 @@ const ProductScreen = () => {
 										</Button>
 									</Flex>
 									<Badge fontSize='lg' width='170px' textAlign='center' colorScheme='gray'>
-										In Stock: {product.stock}
+										Tồn kho: {product.stock}
 									</Badge>
 									<Button
 										variant='outline'
 										isDisabled={product.stock === 0}
 										colorScheme='cyan'
 										onClick={() => addItem()}>
-										Add to cart
+										Thêm vào giỏ hàng
 									</Button>
 									<Stack width='270px'>
 										<Flex alignItems='center'>
 											<BiPackage size='20px' />
 											<Text fontWeight='medium' fontSize='sm' ml='2'>
-												Shipped in 2 - 3 days
+												Giao hàng trong vòng 2 - 3 ngày
 											</Text>
 										</Flex>
 										<Flex alignItems='center'>
 											<BiCheckShield size='20px' />
 											<Text fontWeight='medium' fontSize='sm' ml='2'>
-												2 year extended warranty
+												Bảo hành 2 năm
 											</Text>
 										</Flex>
 										<Flex alignItems='center'>
 											<BiSupport size='20px' />
 											<Text fontWeight='medium' fontSize='sm' ml='2'>
-												We're here for you 24/7
+												Liên hệ 24/7
 											</Text>
 										</Flex>
 									</Stack>
@@ -206,7 +206,7 @@ const ProductScreen = () => {
 										w='140px'
 										colorScheme='cyan'
 										onClick={() => setReviewBoxOpen(!reviewBoxOpen)}>
-										Write a review
+										Viết bài đánh giá
 									</Button>
 								</Tooltip>
 								{reviewBoxOpen && (
@@ -234,13 +234,13 @@ const ProductScreen = () => {
 											onChange={(e) => {
 												setTitle(e.target.value);
 											}}
-											placeholder='Review title (optional)'
+											placeholder='Tiêu đề đánh giá (tùy chọn)'
 										/>
 										<Textarea
 											onChange={(e) => {
 												setComment(e.target.value);
 											}}
-											placeholder={`The ${product.brand} ${product.name} is...`}
+											placeholder={`${product.brand} ${product.name} ...`}
 										/>
 										<Button
 											isLoading={buttonLoading}
@@ -248,7 +248,7 @@ const ProductScreen = () => {
 											w='140px'
 											colorScheme='cyan'
 											onClick={() => onSubmit()}>
-											Publish review
+												Đăng bài đánh giá
 										</Button>
 									</Stack>
 								)}
@@ -256,7 +256,7 @@ const ProductScreen = () => {
 						)}
 						<Stack>
 							<Text fontSize='xl' fontWeight='bold'>
-								Reviews
+								Đánh giá
 							</Text>
 							<SimpleGrid minChildWidth='300px' spacingX='40px' spacingY='20px'>
 								{product.reviews.map((review) => (
@@ -273,7 +273,7 @@ const ProductScreen = () => {
 										</Flex>
 										<Box py='12px'>{review.comment}</Box>
 										<Text fontSize='sm' color='gray.400'>
-											by {review.name}, {new Date(review.createdAt).toDateString()}
+											bởi {review.name}, {new Date(review.createdAt).toDateString()}
 										</Text>
 									</Box>
 								))}

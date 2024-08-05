@@ -80,11 +80,11 @@ const RegistrationScreen = () => {
 					<Stack spacing='8'>
 						<Stack spacing='6'>
 							<Stack spacing={{ base: '2', md: '3' }} textAlign='center'>
-								<Heading size={headingBR}>Create an account.</Heading>
+								<Heading size={headingBR}>Tạo tài khoản</Heading>
 								<HStack spacing='1' justify='center'>
-									<Text color='muted'>Already a user?</Text>
+									<Text color='muted'>Bạn đã có tài khoản?</Text>
 									<Button as={ReactLink} to='/login' variant='link' colorScheme='cyan'>
-										Sign in
+										Đăng nhập
 									</Button>
 								</HStack>
 							</Stack>
@@ -109,20 +109,20 @@ const RegistrationScreen = () => {
 								)}
 								<Stack spacing='5'>
 									<FormControl>
-										<TextField type='text' name='name' placeholder='Your first and last name.' label='Full name' />
+										<TextField type='text' name='name' placeholder='Họ và tên của bạn.' label='Họ và tên' />
 										<TextField type='text' name='email' placeholder='you@example.com' label='Email' />
-										<PasswordField type='password' name='password' placeholder='Your password' label='Password' />
+										<PasswordField type='password' name='password' placeholder='Mật khẩu' label='Mật khẩu' />
 										<PasswordField
 											type='password'
 											name='confirmPassword'
-											placeholder='Confirm your new password'
-											label='Confirm your password'
+											placeholder='Xác nhận mật khẩu'
+											label='Xác nhận mật khẩu của bạn'
 										/>
 									</FormControl>
 								</Stack>
 								<Stack spacing='6'>
 									<Button colorScheme='cyan' size='lg' fontSize='md' isLoading={loading} type='submit'>
-										Sign up
+										Đăng ký
 									</Button>
 									<Button
 										colorScheme='cyan'
@@ -131,7 +131,7 @@ const RegistrationScreen = () => {
 										isLoading={loading}
 										onClick={() => handleGoogleLogin()}>
 										<FcGoogle size={30} />
-										Sign up with Google
+										Đăng nhập bằng Google
 									</Button>
 								</Stack>
 							</Stack>

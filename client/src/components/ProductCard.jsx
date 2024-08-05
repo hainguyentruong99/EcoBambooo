@@ -55,11 +55,11 @@ const ProductCard = ({ product, loading }) => {
 					height='200px'
 				/>
 				{product.stock < 5 ? (
-					<Badge colorScheme='yellow'>only {product.stock} left</Badge>
+					<Badge colorScheme='yellow'>Chỉ còn lại {product.stock} sản phẩm</Badge>
 				) : product.stock < 1 ? (
-					<Badge colorScheme='red'>Sold out</Badge>
+					<Badge colorScheme='red'>Hết hàng</Badge>
 				) : (
-					<Badge colorScheme='green'>In Stock</Badge>
+					<Badge colorScheme='green'>Còn hàng trong kho</Badge>
 				)}
 				{product.productIsNew && (
 					<Badge ml='2' colorScheme='purple'>
@@ -67,7 +67,7 @@ const ProductCard = ({ product, loading }) => {
 					</Badge>
 				)}
 				<Text noOfLines={1} fontSize='xl' fontWeight='semibold' mt='2'>
-					{product.brand} {` `} {product.name}
+					{product.name}
 				</Text>
 				<Text noOfLines={1} fontSize='md' color='gray.600'>
 					{product.subtitle}
@@ -75,7 +75,7 @@ const ProductCard = ({ product, loading }) => {
 				<Flex justify='space-between' alignItems='center' mt='2'>
 					<Badge colorScheme='cyan'>{product.category}</Badge>
 					<Text fontSize='xl' fontWeight='semibold' color='cyan.600'>
-						${product.price}
+						{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price)}
 					</Text>
 				</Flex>
 				<Flex justify='space-between' mt='2'>

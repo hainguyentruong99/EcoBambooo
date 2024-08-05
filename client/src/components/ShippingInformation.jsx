@@ -66,9 +66,9 @@ const ShippingInformation = () => {
 							</Heading>
 							<RadioGroup
 								onChange={(e) => {
-									dispatch(setShipping(e === 'express' ? Number(14.99).toFixed(2) : Number(4.99).toFixed(2)));
+									dispatch(setShipping(e === 'express' ? Number(100000) : Number(50000).toFixed(2)));
 								}}
-								defaultValue={shipping === 4.99 ? 'withoutExpress' : 'express'}>
+								defaultValue={shipping === 50000 ? 'withoutExpress' : 'express'}>
 								<Stack direction={{ base: 'column', lg: 'row' }} align={{ lg: 'flex-start' }}>
 									<Stack pr='10' spacing={{ base: '8', md: '10' }} flex='1.5'>
 										<Box>

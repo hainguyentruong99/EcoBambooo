@@ -54,10 +54,10 @@ const YourOrdersScreen = () => {
 							<Thead>
 								<Tr>
 									<Th>Order Id</Th>
-									<Th>Oder Date</Th>
-									<Th>Paid Total</Th>
+									<Th>Ngày đặt hàng</Th>
+									<Th>Tổng tiền</Th>
 									<Th>Items</Th>
-									<Th>Print Receipt</Th>
+									<Th>In Biên lai</Th>
 								</Tr>
 							</Thead>
 							<Tbody>
@@ -65,18 +65,18 @@ const YourOrdersScreen = () => {
 									<Tr key={order._id}>
 										<Td>{order._id}</Td>
 										<Td>{new Date(order.createdAt).toDateString()}</Td>
-										<Td>${order.totalPrice}</Td>
+										<Td>{Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(order.totalPrice)}</Td>
 										<Td>
 											{order.orderItems.map((item) => (
 												<UnorderedList key={item._id}>
 													<ListItem>
-														{item.qty} x {item.name} (${item.price} each)
+														{item.qty} x {item.name} ({Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price)})
 													</ListItem>
 												</UnorderedList>
 											))}
 										</Td>
 										<Td>
-											<Button variant='outline'>Receipt</Button>
+											<Button variant='outline'>Biên lai</Button>
 										</Td>
 									</Tr>
 								))}
