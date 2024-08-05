@@ -15,7 +15,6 @@ const ConfirmRemovalAlert = ({ isOpen, onClose, cancelRef, itemToDelete, deleteA
 		dispatch(deleteAction(itemToDelete._id));
 		onClose();
 	};
-
 	return (
 		<AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
 			<AlertDialogOverlay>
@@ -23,7 +22,7 @@ const ConfirmRemovalAlert = ({ isOpen, onClose, cancelRef, itemToDelete, deleteA
 					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
 						Delete {itemToDelete.name}
 					</AlertDialogHeader>
-					<AlertDialogBody>Are you sure? You can't undo this actoin afterwards. </AlertDialogBody>
+					<AlertDialogBody>Are you sure? You can't undo this action afterwards.</AlertDialogBody>
 					<AlertDialogFooter>
 						<Button ref={cancelRef} onClick={onClose}>
 							Cancel

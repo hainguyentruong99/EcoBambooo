@@ -22,9 +22,8 @@ import {
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, resetProductError } from '../redux/actions/productActions';
-
-import AddNewProduct from './AddNewProduct';
 import ProductTableItem from './ProductTableItem';
+import AddNewProduct from './AddNewProduct';
 
 const ProductsTab = () => {
 	const dispatch = useDispatch();
@@ -35,6 +34,7 @@ const ProductsTab = () => {
 	useEffect(() => {
 		dispatch(getProducts());
 		dispatch(resetProductError());
+
 		if (productUpdate) {
 			toast({
 				description: 'Product has been updated.',
@@ -56,7 +56,7 @@ const ProductsTab = () => {
 			{loading ? (
 				<Wrap justify='center'>
 					<Stack direction='row' spacing='4'>
-						<Spinner mt='20' thickness='2px' speed='0.65s' emptyColor='gray.200' color='orange.500' size='xl' />
+						<Spinner mt='20' thickness='2px' speed='0.65s' emptyColor='gray.200' color='cyan.500' size='xl' />
 					</Stack>
 				</Wrap>
 			) : (
@@ -76,9 +76,7 @@ const ProductsTab = () => {
 							</h2>
 							<AccordionPanel pb='4'>
 								<Table>
-									<Tbody>
-										<AddNewProduct />
-									</Tbody>
+									<AddNewProduct />
 								</Table>
 							</AccordionPanel>
 						</AccordionItem>
@@ -86,8 +84,10 @@ const ProductsTab = () => {
 					<Table variant='simple' size='lg'>
 						<Thead>
 							<Tr>
+								<Th>Images</Th>
 								<Th>Description</Th>
 								<Th>Brand & Name</Th>
+								<Th>StripeId & Subtitle</Th>
 								<Th>Category & Price</Th>
 								<Th>Stock & new Badge</Th>
 							</Tr>

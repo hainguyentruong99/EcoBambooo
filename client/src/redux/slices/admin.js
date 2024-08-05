@@ -14,7 +14,7 @@ export const adminSlice = createSlice({
 	initialState,
 	reducers: {
 		setLoading: (state) => {
-			state.loading = true;
+			state.loading = false;
 		},
 		setError: (state, { payload }) => {
 			state.error = payload;
@@ -54,8 +54,9 @@ export const adminSlice = createSlice({
 	},
 });
 
-export const { setLoading, setError, getUsers, userDelete, resetError, setDeliveredFlag, orderDelete, getOrders } =
+export const { setDeliveredFlag, setError, setLoading, resetError, getOrders, getUsers, userDelete, orderDelete } =
 	adminSlice.actions;
+
 export default adminSlice.reducer;
 
 export const adminSelector = (state) => state.admin;

@@ -25,9 +25,11 @@ const AddNewProduct = () => {
 	const [category, setCategory] = useState('');
 	const [stock, setStock] = useState('');
 	const [price, setPrice] = useState('');
-	const [productIsNew, setProductIsNew] = useState(true);
+	const [productIsNew, setProductIsNew] = useState('');
 	const [description, setDescription] = useState('');
 	const [imageOne, setImageOne] = useState('');
+	const [subtitle, setSubtitle] = useState('');
+	const [stripeId, setStripeId] = useState('');
 	const [imageTwo, setImageTwo] = useState('');
 
 	const createNewProduct = () => {
@@ -38,7 +40,9 @@ const AddNewProduct = () => {
 				category,
 				stock,
 				price,
-				images: [`/images/${imageOne}`, `images/${imageTwo}`],
+				stripeId,
+				subtitle,
+				images: [`/images/${imageOne}`, `/images/${imageTwo}`],
 				productIsNew,
 				description,
 			})
@@ -50,22 +54,12 @@ const AddNewProduct = () => {
 			<Td>
 				<Text fontSize='sm'>Image File Name 1</Text>
 				<Tooltip label={'Set the name of your first image e.g., iPhone.jpg'} fontSize='sm'>
-					<Input
-						size='sm'
-						value={imageOne}
-						onChange={(e) => setImageOne(e.target.value)}
-						placeholder='e.g., iPhone.jpg'
-					/>
+					<Input size='sm' value={imageOne} onChange={(e) => setImageOne(e.target.value)} />
 				</Tooltip>
 				<Spacer />
 				<Text fontSize='sm'>Image File Name 2</Text>
-				<Tooltip label={'Set the name of your second image e.g., iPhone.jpg'} fontSize='sm'>
-					<Input
-						size='sm'
-						value={imageTwo}
-						onChange={(e) => setImageTwo(e.target.value)}
-						placeholder='e.g., iPhone.jpg'
-					/>
+				<Tooltip label={'Set the name of you second image e.g., iPhone.jpg'} fontSize='sm'>
+					<Input size='sm' value={imageTwo} onChange={(e) => setImageTwo(e.target.value)} />
 				</Tooltip>
 			</Td>
 			<Td>
@@ -74,23 +68,26 @@ const AddNewProduct = () => {
 					value={description}
 					w='270px'
 					h='120px'
-					onChange={(e) => {
-						setDescription(e.target.value);
-					}}
+					onChange={(e) => setDescription(e.target.value)}
 					placeholder='Description'
 					size='sm'
 				/>
 			</Td>
 			<Td>
 				<Text fontSize='sm'>Brand</Text>
-				<Input size='sm' value={brand} onChange={(e) => setBrand(e.target.value)} placeholder='Apple or Samsung etc.' />
+				<Input size='sm' value={brand} onChange={(e) => setBrand(e.target.value)} placeholder='Apple or Samsung et.' />
 				<Text fontSize='sm'>Name</Text>
-				<Input size='sm' value={name} onChange={(e) => setName(e.target.value)} placeholder='Samsung S30' />
+				<Input size='sm' value={name} onChange={(e) => setName(e.target.value)} placeholder='Samsung S23' />
 			</Td>
-
+			<Td>
+				<Text fontSize='sm'>StripeId</Text>
+				<Input size='sm' value={stripeId} onChange={(e) => setStripeId(e.target.value)} />
+				<Text fontSize='sm'>Subtitle</Text>
+				<Input size='sm' value={subtitle} onChange={(e) => setSubtitle(e.target.value)} placeholder='Samsung S23...' />
+			</Td>
 			<Td>
 				<Text fontSize='sm'>Category</Text>
-				<Input size='sm' value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Electronics' />
+				<Input size='sm' value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Smartphone' />
 				<Text fontSize='sm'>Price</Text>
 				<Input size='sm' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='299.99' />
 			</Td>
@@ -103,7 +100,7 @@ const AddNewProduct = () => {
 					<FormLabel htmlFor='productIsNewFlag' mb='0' fontSize='sm'>
 						Enable
 						<Badge rounded='full' px='1' mx='1' fontSize='0.8em' colorScheme='green'>
-							New
+							new
 						</Badge>
 						badge?
 					</FormLabel>
@@ -113,7 +110,6 @@ const AddNewProduct = () => {
 			<Td>
 				<VStack>
 					<Button variant='outline' w='160px' colorScheme='cyan' onClick={createNewProduct}>
-						<MdDriveFolderUpload />
 						<Text ml='2'>Save Product</Text>
 					</Button>
 				</VStack>

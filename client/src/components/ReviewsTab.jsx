@@ -1,34 +1,37 @@
 import {
+	Box,
+	TableContainer,
+	Th,
+	Tr,
+	Table,
+	Td,
+	Thead,
+	Tbody,
+	Button,
+	useDisclosure,
+	Alert,
+	Stack,
+	Spinner,
+	AlertIcon,
+	AlertTitle,
+	AlertDescription,
+	Wrap,
+	useToast,
 	Accordion,
 	AccordionButton,
 	AccordionItem,
-	AccordionPanel,
-	Alert,
-	AlertDescription,
-	AlertIcon,
-	AlertTitle,
-	Box,
-	Button,
 	Flex,
-	Spacer,
-	Spinner,
-	Stack,
-	Table,
-	TableContainer,
-	Tbody,
-	Td,
 	Text,
+	AccordionPanel,
 	Textarea,
-	Th,
-	Thead,
-	Tr,
-	Wrap,
-	useToast,
+	Spacer,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
+
+import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeReview } from '../redux/actions/adminActions';
+import { getAllUsers, deleteUser, resetErrorAndRemoval } from '../redux/actions/adminActions';
 import { getProducts } from '../redux/actions/productActions';
+import { removeReview } from '../redux/actions/adminActions';
 
 const ReviewsTab = () => {
 	const dispatch = useDispatch();
@@ -45,10 +48,10 @@ const ReviewsTab = () => {
 				isClosable: true,
 			});
 		}
-	}, [toast, dispatch, reviewRemoval, loading]);
+	}, [dispatch, toast, reviewRemoval, loading]);
 
 	const onRemoveReview = (productId, reviewId) => {
-		console.log(reviewRemoval);
+
 		dispatch(removeReview(productId, reviewId));
 	};
 

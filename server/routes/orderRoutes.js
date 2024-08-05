@@ -16,7 +16,7 @@ const deleteOrder = asyncHandler(async (req, res) => {
 	if (order) {
 		res.json(order);
 	} else {
-		res.status(404);
+		res.status(404).send('Order not found.');
 		throw new Error('Order not found.');
 	}
 });
@@ -29,13 +29,13 @@ const setDelivered = asyncHandler(async (req, res) => {
 		const updatedOrder = await order.save();
 		res.json(updatedOrder);
 	} else {
-		res.status(404);
+		res.status(404).send('Order could not be uploaded.');
 		throw new Error('Order could not be updated.');
 	}
 });
 
-orderRoutes.route('/:id').delete(protectRoute, admin, deleteOrder);
-orderRoutes.route('/:id').put(protectRoute, admin, setDelivered);
 orderRoutes.route('/').get(protectRoute, admin, getOrders);
+orderRoutes.route('/:id').put(protectRoute, admin, setDelivered);
+orderRoutes.route('/:id').delete(protectRoute, admin, deleteOrder);
 
 export default orderRoutes;

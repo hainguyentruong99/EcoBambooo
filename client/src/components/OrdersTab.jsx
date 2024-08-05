@@ -16,16 +16,16 @@ import {
 	AlertTitle,
 	AlertDescription,
 	Wrap,
-	useToast,
 	Text,
 	Flex,
+	useToast,
 } from '@chakra-ui/react';
 import { CheckCircleIcon, DeleteIcon } from '@chakra-ui/icons';
-import { TbTruckDelivery } from 'react-icons/tb';
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllOrders, deleteOrder, setDelivered, resetErrorAndRemoval } from '../redux/actions/adminActions';
+import { getAllOrders, deleteOrder, resetErrorAndRemoval, setDelivered } from '../redux/actions/adminActions';
 import ConfirmRemovalAlert from './ConfirmRemovalAlert';
+import { TbTruckDelivery } from 'react-icons/tb';
 
 const OrdersTab = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -45,6 +45,7 @@ const OrdersTab = () => {
 				isClosable: true,
 			});
 		}
+
 		if (deliveredFlag) {
 			toast({
 				description: 'Order has been set to delivered.',
@@ -52,7 +53,7 @@ const OrdersTab = () => {
 				isClosable: true,
 			});
 		}
-	}, [orderRemoval, dispatch, toast, deliveredFlag]);
+	}, [dispatch, toast, orderRemoval, deliveredFlag]);
 
 	const openDeleteConfirmBox = (order) => {
 		setOrderToDelete(order);
@@ -88,7 +89,7 @@ const OrdersTab = () => {
 									<Th>Date</Th>
 									<Th>Name</Th>
 									<Th>Email</Th>
-									<Th>Shipping Info</Th>
+									<Th>Shipping</Th>
 									<Th>Items Ordered</Th>
 									<Th>Shipping Price</Th>
 									<Th>Total</Th>
@@ -104,13 +105,13 @@ const OrdersTab = () => {
 											<Td>{order.email}</Td>
 											<Td>
 												<Text>
-													<i>Address:</i> {order.shippingAddress.address}
+													<i>Adress: </i> {order.shippingAddress.address}
 												</Text>
 												<Text>
-													<i>City:</i> {order.shippingAddress.postalCode} {order.shippingAddress.city}
+													<i>City: </i> {order.shippingAddress.postalCode} {order.shippingAddress.city}
 												</Text>
 												<Text>
-													<i>Country:</i> {order.shippingAddress.country}
+													<i>Country: </i> {order.shippingAddress.country}
 												</Text>
 											</Td>
 											<Td>

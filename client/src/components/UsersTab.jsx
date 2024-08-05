@@ -43,7 +43,7 @@ const UsersTab = () => {
 				isClosable: true,
 			});
 		}
-	}, [userRemoval, dispatch, toast]);
+	}, [dispatch, toast, userRemoval]);
 
 	const openDeleteConfirmBox = (user) => {
 		setUserToDelete(user);
@@ -62,7 +62,7 @@ const UsersTab = () => {
 			{loading ? (
 				<Wrap justify='center'>
 					<Stack direction='row' spacing='4'>
-						<Spinner mt='20' thickness='2px' speed='0.65s' emptyColor='gray.200' color='orange.500' size='xl' />
+						<Spinner mt='20' thickness='2px' speed='0.65s' emptyColor='gray.200' color='cyan.500' size='xl' />
 					</Stack>
 				</Wrap>
 			) : (
@@ -87,13 +87,13 @@ const UsersTab = () => {
 											</Td>
 											<Td>{user.email}</Td>
 											<Td>{new Date(user.createdAt).toDateString()}</Td>
-											<Td>{user.isAdmin === 'true' ? <CheckCircleIcon color='orange.500' /> : ''}</Td>
+											<Td>{user.isAdmin ? <CheckCircleIcon color='cyan.500' /> : ''}</Td>
 											<Td>
 												<Button
+													leftIcon={<DeleteIcon />}
 													isDisabled={user._id === userInfo._id}
 													variant='outline'
 													onClick={() => openDeleteConfirmBox(user)}>
-													<DeleteIcon mr='5px' />
 													Remove User
 												</Button>
 											</Td>
