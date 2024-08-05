@@ -40,7 +40,7 @@ const OrdersTab = () => {
 		dispatch(resetErrorAndRemoval());
 		if (orderRemoval) {
 			toast({
-				description: 'Order has been removed.',
+				description: 'Đơn hàng đã bị xóa.',
 				status: 'success',
 				isClosable: true,
 			});
@@ -48,7 +48,7 @@ const OrdersTab = () => {
 
 		if (deliveredFlag) {
 			toast({
-				description: 'Order has been set to delivered.',
+				description: 'Đơn hàng đã được thiết lập để giao.',
 				status: 'success',
 				isClosable: true,
 			});
@@ -86,14 +86,14 @@ const OrdersTab = () => {
 						<Table variant='simple'>
 							<Thead>
 								<Tr>
-									<Th>Date</Th>
-									<Th>Name</Th>
+									<Th>Ngày</Th>
+									<Th>Tên</Th>
 									<Th>Email</Th>
 									<Th>Shipping</Th>
 									<Th>Items Ordered</Th>
-									<Th>Shipping Price</Th>
-									<Th>Total</Th>
-									<Th>Delivered</Th>
+									<Th>Giá vận chuyển</Th>
+									<Th>Tổng tiền</Th>
+									<Th>Đã giao hàng</Th>
 								</Tr>
 							</Thead>
 							<Tbody>
@@ -105,13 +105,13 @@ const OrdersTab = () => {
 											<Td>{order.email}</Td>
 											<Td>
 												<Text>
-													<i>Adress: </i> {order.shippingAddress.address}
+													<i>Địa chỉ: </i> {order.shippingAddress.address}
 												</Text>
 												<Text>
-													<i>City: </i> {order.shippingAddress.postalCode} {order.shippingAddress.city}
+													<i>Thành phố: </i> {order.shippingAddress.postalCode} {order.shippingAddress.city}
 												</Text>
 												<Text>
-													<i>Country: </i> {order.shippingAddress.country}
+													<i>Quốc gia: </i> {order.shippingAddress.country}
 												</Text>
 											</Td>
 											<Td>
@@ -128,7 +128,7 @@ const OrdersTab = () => {
 												<Flex direction='column'>
 													<Button variant='outline' onClick={() => openDeleteConfirmBox(order)}>
 														<DeleteIcon mr='5px' />
-														Remove Order
+														Xóa đơn hàng
 													</Button>
 													{!order.isDelivered && (
 														<Button mt='4px' variant='outline' onClick={() => onSetToDelivered(order)}>

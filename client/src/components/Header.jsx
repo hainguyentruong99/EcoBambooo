@@ -40,10 +40,9 @@ import { FcGoogle } from 'react-icons/fc';
 import { googleLogout } from '@react-oauth/google';
 
 const Links = [
-	{ name: 'Products', route: '/products' },
-	{ name: 'Hot Deals', route: '/hot-deals' },
-	{ name: 'Contact', route: '/contact' },
-	{ name: 'Services', route: '/services' },
+	{ name: 'Danh sách sản phẩm', route: '/products' },
+	{ name: 'Liên hệ', route: '/contact' },
+	{ name: 'Dịch vụ', route: '/services' },
 ];
 
 const Header = () => {
@@ -65,7 +64,7 @@ const Header = () => {
 		googleLogout();
 		dispatch(logout());
 		toast({
-			description: 'You have been logged out.',
+			description: 'Đăng xuất thành công.',
 			status: 'success',
 			isClosable: 'true',
 		});
@@ -161,22 +160,22 @@ const Header = () => {
 									</HStack>
 									<Divider py='1' />
 									<MenuItem as={ReactLink} to='/order-history'>
-										Order History
+										Lịch sử đơn hàng
 									</MenuItem>
 									<MenuItem as={ReactLink} to='/profile'>
-										Profile
+										Hồ sơ cá nhân
 									</MenuItem>
 									{userInfo.isAdmin && (
 										<>
 											<MenuDivider />
 											<MenuItem as={ReactLink} to='/admin-console'>
 												<MdOutlineAdminPanelSettings />
-												<Text ml='2'>Admin Console</Text>
+												<Text ml='2'>Bảng điều khiển quản trị</Text>
 											</MenuItem>
 										</>
 									)}
 									<MenuDivider />
-									<MenuItem onClick={logoutHandler}>Logout</MenuItem>
+									<MenuItem onClick={logoutHandler}>Đăng xuất</MenuItem>
 								</MenuList>
 							</Menu>
 						) : (
@@ -184,11 +183,11 @@ const Header = () => {
 								<MenuButton as={IconButton} variant='ghost' cursor='pointer' icon={<BiLogInCircle size='25px' />} />
 								<MenuList>
 									<MenuItem as={ReactLink} to='/login' p='2' fontWeight='400' variant='link'>
-										Sign in
+										Đăng nhập
 									</MenuItem>
 									<MenuDivider />
 									<MenuItem as={ReactLink} to='/registration' p='2' fontWeight='400' variant='link'>
-										Sign up
+										Đăng xuất
 									</MenuItem>
 								</MenuList>
 							</Menu>
@@ -227,8 +226,8 @@ const Header = () => {
 				<Box>
 					<Alert status='warning'>
 						<AlertIcon />
-						<AlertTitle>Email not verified!</AlertTitle>
-						<AlertDescription>You must verify your email address.</AlertDescription>
+						<AlertTitle>Email chưa được xác minh!</AlertTitle>
+						<AlertDescription>Bạn phải xác minh địa chỉ email của mình.</AlertDescription>
 						<Spacer />
 						<CloseIcon cursor={'pointer'} onClick={() => setShowBanner(false)} />
 					</Alert>

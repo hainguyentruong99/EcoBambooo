@@ -43,7 +43,7 @@ const ReviewsTab = () => {
 		dispatch(getProducts());
 		if (reviewRemoval) {
 			toast({
-				description: 'Review has been removed.',
+				description: 'Đánh giá đã bị xóa.',
 				status: 'success',
 				isClosable: true,
 			});
@@ -97,11 +97,11 @@ const ReviewsTab = () => {
 												<Table size='sm'>
 													<Thead>
 														<Tr>
-															<Th>Username</Th>
+															<Th>Tên tài khoản</Th>
 															<Th>Rating</Th>
-															<Th>Title</Th>
-															<Th>Comment</Th>
-															<Th>Created</Th>
+															<Th>Tiêu đề</Th>
+															<Th>Bình luận</Th>
+															<Th>Ngày đánh giá</Th>
 														</Tr>
 													</Thead>
 													<Tbody>
@@ -119,7 +119,7 @@ const ReviewsTab = () => {
 																		variant='outline'
 																		colorScheme='red'
 																		onClick={() => onRemoveReview(product._id, review._id)}>
-																		Remove Review
+																		Xóa đánh giá
 																	</Button>
 																</Td>
 															</Tr>

@@ -19,21 +19,21 @@ const OrderSummary = ({ checkoutSreen = false }) => {
 			<Stack spacing='6'>
 				<Flex justify='space-between'>
 					<Text fontWeight='medium' color={mode('gray.600', 'gray.400')}>
-						Subtotal
+						Tổng cộng
 					</Text>
-					<Text fontWeight='medium'>${subtotal}</Text>
+					<Text fontWeight='medium'>{subtotal} VND</Text>
 				</Flex>
 				<Flex justify='space-between'>
 					<Text fontWeight='medium' color={mode('gray.600', 'gray.400')}>
-						Shipping
+						Phí giao hàng
 					</Text>
-					<Text fontWeight='medium'>${shipping}</Text>
+					<Text fontWeight='medium'>{shipping} VND</Text>
 				</Flex>
 				<Flex justify='space-between'>
 					<Text fontSize='xl' fontWeight='extrabold'>
-						Total
+						Tổng tiền
 					</Text>
-					<Text fontWeight='medium'>${Number(subtotal) + Number(shipping)}</Text>
+					<Text fontWeight='medium'>{Number(subtotal) + Number(shipping)} VND</Text>
 				</Flex>
 			</Stack>
 			<Button
@@ -43,7 +43,7 @@ const OrderSummary = ({ checkoutSreen = false }) => {
 				colorScheme='cyan'
 				size='lg'
 				rightIcon={<FaArrowRight />}>
-				Checkout
+					Thanh toán
 			</Button>
 		</Stack>
 	);

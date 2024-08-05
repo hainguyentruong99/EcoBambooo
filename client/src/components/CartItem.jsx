@@ -12,7 +12,7 @@ const CartItem = ({ cartItem }) => {
 			<VStack p='2' w='100%' spacing='4' align='stretch'>
 				<Flex alignItems='center' justify='space-between'>
 					<Text fontWeight='medium'>
-						{brand} {name}
+						{name}
 					</Text>
 					<Spacer />
 					<CloseButton onClick={() => dispatch(removeCartItem(id))} />
@@ -32,7 +32,7 @@ const CartItem = ({ cartItem }) => {
 							</option>
 						))}
 					</Select>
-					<Text fontWeight='bold'>${price}</Text>
+					<Text fontWeight='bold'>{price} VND</Text>
 				</Flex>
 			</VStack>
 		</Flex>

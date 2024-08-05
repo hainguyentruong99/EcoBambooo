@@ -13,21 +13,21 @@ const PasswordForgottenForm = () => {
 	return (
 		<>
 			<Box my='4'>
-				<Text as='b'>Enter your email address below.</Text>
-				<Text>We'll send you an email with a link to reset your password.</Text>
+				<Text as='b'>Nhập địa chỉ email của bạn dưới đây.</Text>
+				<Text>Chúng tôi sẽ gửi cho bạn email có liên kết để đặt lại mật khẩu.</Text>
 			</Box>
 			<Stack>
 				<Input
 					mb='4'
 					type='text'
 					name='email'
-					placeholder='Your Email Address'
+					placeholder='Địa chỉ email'
 					label='Email'
 					value={email}
 					onChange={(e) => handleChange(e)}
 				/>
 				<Button colorScheme='yellow' size='lg' fontSize='md' onClick={() => dispatch(sendResetEmail(email))}>
-					Send Reset Email
+					Xác nhận
 				</Button>
 			</Stack>
 		</>

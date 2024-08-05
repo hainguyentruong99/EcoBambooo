@@ -20,15 +20,15 @@ const ConfirmRemovalAlert = ({ isOpen, onClose, cancelRef, itemToDelete, deleteA
 			<AlertDialogOverlay>
 				<AlertDialogContent>
 					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
-						Delete {itemToDelete.name}
+						Xóa {itemToDelete.name}
 					</AlertDialogHeader>
-					<AlertDialogBody>Are you sure? You can't undo this action afterwards.</AlertDialogBody>
+					<AlertDialogBody>Bạn có chắc không? Bạn không thể hoàn tác hành động này sau đó.</AlertDialogBody>
 					<AlertDialogFooter>
 						<Button ref={cancelRef} onClick={onClose}>
-							Cancel
+							Hủy
 						</Button>
 						<Button colorScheme='red' onClick={onDeleteItem} ml={3}>
-							Delete {itemToDelete.name}
+							Xóa {itemToDelete.name}
 						</Button>
 					</AlertDialogFooter>
 				</AlertDialogContent>

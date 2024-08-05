@@ -39,30 +39,30 @@ const ShippingInformation = () => {
 				country: shippingAddress ? shippingAddress.country : '',
 			}}
 			validationSchema={Yup.object({
-				address: Yup.string().required('We need an address.').min(2, 'This address is too short.'),
-				postalCode: Yup.string().required('We need a postal code.').min(2, 'This postal code is too short.'),
-				city: Yup.string().required('We need a city.').min(2, 'This city is too short.'),
-				country: Yup.string().required('We need a country.').min(2, 'This country is too short.'),
+				address: Yup.string().required('Vui lòng nhập địa chỉ').min(2, 'Địa chỉ quá ngắn.'),
+				postalCode: Yup.string().required('Vui lòng nhập mã bưu chính.').min(2, 'Mã bưu chính quá ngắn.'),
+				city: Yup.string().required('Vui lòng nhập thành phố.').min(2, 'Thành phố  quá ngắn.'),
+				country: Yup.string().required('Vui lòng nhập quốc gia.').min(2, 'Quốc gia quá ngắn.'),
 			})}
 			onSubmit={onSubmit}>
 			{(formik) => (
 				<>
 					<VStack as='form'>
 						<FormControl>
-							<TextField name='address' placeholder='Street Address' label='Street Address' />
+							<TextField name='address' placeholder='Địa chỉ đường phố' label='Địa chỉ đường phố' />
 							<Flex>
 								<Box flex='1' mr='10'>
-									<TextField name='postalCode' placeholder='Postal Code' label='Postal Code' type='number' />
+									<TextField name='postalCode' placeholder='Mã bưu chính' label='Mã bưu chính' type='number' />
 								</Box>
 								<Box flex='2'>
-									<TextField name='city' placeholder='City' label='City' />
+									<TextField name='city' placeholder='Thành phố' label='Thành phố' />
 								</Box>
 							</Flex>
-							<TextField name='country' placeholder='Country' label='Country' />
+							<TextField name='country' placeholder='Quốc gia' label='Quốc gia' />
 						</FormControl>
 						<Box w='100%' pr='5'>
 							<Heading fontSize='2xl' fontWeight='extrabold' mb='10'>
-								Shipping Method
+								Phương thức vận chuyển
 							</Heading>
 							<RadioGroup
 								onChange={(e) => {
@@ -73,16 +73,16 @@ const ShippingInformation = () => {
 									<Stack pr='10' spacing={{ base: '8', md: '10' }} flex='1.5'>
 										<Box>
 											<Radio value='express'>
-												<Text fontWeight='bold'>Express 14.99</Text>
-												<Text>Dispatched in 24 hours</Text>
+												<Text fontWeight='bold'>Giao hàng nhanh</Text>
+												<Text>Gửi trong vòng 24h</Text>
 											</Radio>
 										</Box>
 										<Stack spacing='6'>Express</Stack>
 									</Stack>
 									<Radio value='withoutExpress'>
 										<Box>
-											<Text fontWeight='bold'>Standard 4.99</Text>
-											<Text>Dispatched in 2 - 3 days</Text>
+											<Text fontWeight='bold'>Giao hàng tiêu chuẩn</Text>
+											<Text>Gửi trong vòng 2 - 3 ngày</Text>
 										</Box>
 									</Radio>
 								</Stack>
@@ -91,7 +91,7 @@ const ShippingInformation = () => {
 					</VStack>
 					<Flex alignItems='center' gap='2' direction={{ base: 'column', lg: 'row' }}>
 						<Button variant='outline' colorScheme='cyan' w='100%' as={ReactLink} to='/cart'>
-							Back to cart
+							Quay lại giỏ hàng
 						</Button>
 						<Button
 							variant='outline'
@@ -100,7 +100,7 @@ const ShippingInformation = () => {
 							as={ReactLink}
 							to='/payment'
 							onClick={formik.handleSubmit}>
-							Continue to Payment
+								Tiếp tục thanh toán
 						</Button>
 					</Flex>
 				</>

@@ -32,7 +32,7 @@ const ProductCard = ({ product, loading }) => {
 			dispatch(addCartItem(id, 1));
 		}
 		toast({
-			description: 'Item has been added.',
+			description: 'Thêm sản phẩm thành công',
 			status: 'success',
 			isClosable: true,
 		});
@@ -108,9 +108,9 @@ const ProductCard = ({ product, loading }) => {
 						hasArrow
 						label={
 							!cartPlusDisabled
-								? 'You reached the maximum quantity jof the product. '
+								? 'Bạn đã đạt đến số lượng sản phẩm tối đa.'
 								: product.stock <= 0
-								? 'Out of stock'
+								? 'Hết hàng'
 								: ''
 						}>
 						<IconButton
